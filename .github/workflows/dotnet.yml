@@ -17,10 +17,12 @@ jobs:
     - name: Run the action
       uses: potatoqualitee/mssqlsuite@v1.5.1
       with:
-        install: sqlengine, sqlpackage
+        install: sqlengine, sqlclient, sqlpackage, localdb
+        show-log: true
+        sa-password: c0MplicatedP@ssword
 
     - name: Run sqlclient
-      run: sqlcmd -S localhost -U sa -P dbatools.I0 -d DevOpsChallenge.SalesApi -Q "SELECT @@version;"
+      run: sqlcmd -S localhost -U sa -P c0MplicatedP@ssword -d tempdb -Q "SELECT @@version;"
       
     - uses: actions/checkout@v3
     - name: Setup .NET
