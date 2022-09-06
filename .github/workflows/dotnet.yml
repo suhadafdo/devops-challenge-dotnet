@@ -16,7 +16,7 @@ jobs:
     - name: Install SQL Server
       uses: Particular/install-sql-server-action@v1.0.0
       with:
-        connection-string-env-var: SQL_SERVER_CONNECTION_STRING
+        connection-string-env-var: Server=(localdb)\\mssqllocaldb;Database=DevOpsChallenge.SalesApi;Trusted_Connection=True;ConnectRetryCount=0
         catalog: nservicebus
         extra-params: "Max Pool Size=100;"
     - name: Setup .NET
