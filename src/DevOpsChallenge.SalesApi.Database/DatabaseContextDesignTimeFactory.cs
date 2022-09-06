@@ -12,7 +12,7 @@ namespace DevOpsChallenge.SalesApi.Database
         /// <inheritdoc />
         public DatabaseContext CreateDbContext(string[] args)
         {
-            string connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRINGS__DATABASE") ?? @"Server=(localdb)\\mssqllocaldb;Database=tempdb;User Id=sa;Password=c0MplicatedP@ssword;ConnectRetryCount=1";
+            string connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRINGS__DATABASE") ?? @"Server=.;Database=tempdb;User Id=sa;Password=c0MplicatedP@ssword;ConnectRetryCount=1";
 
             DbContextOptionsBuilder<DatabaseContext> optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>()
                 .UseSqlServer(connectionString);
