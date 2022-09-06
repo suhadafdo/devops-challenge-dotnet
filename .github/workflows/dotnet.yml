@@ -12,13 +12,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Install SQL Server
-      uses: Particular/install-sql-server-action@v1.0.0
+    - uses: actions/checkout@v2
+
+    - name: Run the action
+      uses: potatoqualitee/mssqlsuite@v1.5.1
       with:
-        connection-string-env-var: Server=(localdb)\\mssqllocaldb;Database=DevOpsChallenge.SalesApi;Trusted_Connection=True;ConnectRetryCount=0
-        catalog: nservicebus
-        extra-params: "Max Pool Size=100;"
+        install: sqlengine, sqlpackage
+
+    - name: Run sqlclient
+      run: sqlcmd -S localhost -U sa -P dbatools.I0 -d DevOpsChallenge.SalesApi -Q "SELECT @@version;"
+      
+    - uses: actions/checkout@v3
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
