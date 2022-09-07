@@ -9,20 +9,15 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Run the action
-      uses: potatoqualitee/mssqlsuite@v1.5.1
-      with:
-        install: sqlengine, sqlclient, sqlpackage, localdb
-        show-log: true
-        sa-password: c0MplicatedP@ssword
-
-    - name: Run sqlclient
-      run: sqlcmd -S localhost -U sa -P c0MplicatedP@ssword -d tempdb -Q "SELECT @@version;"
+    
+    - name: Run Docker SQL
+      run: docker run -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=YourStrong@Passw0rd" -p 1433:1433 --name sql1 --hostname sql1 -d mcr.microsoft.com/mssql/server:2022-latest
+      
+#    - name: Run sqlclient
+#      run: sqlcmd -S localhost -U sa -P c0MplicatedP@ssword -d tempdb -Q "SELECT @@version;"
       
     - uses: actions/checkout@v3
     - name: Setup .NET
@@ -32,6 +27,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet build --no-restore -o devops-package
+      
+#    - name: Test
+#      run: dotnet test --no-build --verbosity normal
