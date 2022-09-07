@@ -18,11 +18,9 @@ await Host.CreateDefaultBuilder(args)
     {
         webBuilder.UseStartup<Startup>();
     })
-    .UseKestrel(options => 
-    {
-        options.AddServerHeader = false;
-        options.UseStartup<Startup>();
-    
-    })
-                
+
+static IWebHostBuilder CreateWebHostBuilder(string[] args) => WebHost.CreateDefaultBuilder(args)
+                   .UseKestrel(options => options.AddServerHeader = false)
+                .UseStartup<Startup>();
+
     .RunConsoleAsync();
