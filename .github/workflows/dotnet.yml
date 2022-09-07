@@ -30,6 +30,8 @@ jobs:
       run: dotnet build --no-restore -o devops-package
       env:  
         CONNECTIONSTRINGS__DATABASE: Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;
+    - name: Sample test
+      run: ls -al ./devops-package
       
 #    - name: Test
 #      run: dotnet test --no-build --verbosity normal
