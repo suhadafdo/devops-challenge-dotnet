@@ -4,13 +4,13 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main, develop ]
 
 permissions:
   packages: write
 
 jobs:
-  build:
+  CI:
 
     runs-on: ubuntu-latest
 
