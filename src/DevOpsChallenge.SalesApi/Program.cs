@@ -7,7 +7,7 @@ using System;
 // Set console title
 Console.Title = "DevOps Challenge Sales API";
 
-public static IHostBuilder CreateHostBuilder(string[] args) =>
+IHostBuilder CreateHostBuilder(string[] args) =>
     Host.CreateDefaultBuilder(args)
         .ConfigureWebHostDefaults(webBuilder =>
         {
