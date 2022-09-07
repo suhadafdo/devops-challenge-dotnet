@@ -7,13 +7,6 @@ using System;
 // Set console title
 Console.Title = "DevOps Challenge Sales API";
 
-IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>()
-                      .UseKestrel(options => options.AddServerHeader = false);
-        });
 
 // Build and run host
 await Host.CreateDefaultBuilder(args)
@@ -24,5 +17,6 @@ await Host.CreateDefaultBuilder(args)
     .ConfigureWebHostDefaults(webBuilder =>
     {
         webBuilder.UseStartup<Startup>();
+        .UseKestrel(options => options.AddServerHeader = false)
     })
     .RunConsoleAsync();
