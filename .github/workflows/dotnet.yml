@@ -29,9 +29,13 @@ jobs:
     - name: Build
       run: dotnet build --no-restore -o devops-package
       env:  
-        CONNECTIONSTRINGS__DATABASE: Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;
+        CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
     - name: Sample test
       run: ls -al ./devops-package
+    - name: run background
+      run: ./devops-package/DevOpsChallenge.SalesApi &
+      env:  
+        CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
       
-#    - name: Test
-#      run: dotnet test --no-build --verbosity normal
+    - name: Test
+      run: sleep 10 && dotnet test --no-build --verbosity normal
