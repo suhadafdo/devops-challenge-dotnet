@@ -30,6 +30,11 @@ jobs:
       run: dotnet build --no-restore -o devops-package
       env:  
         CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
+    
+    - name: run background
+      run: ./devops-package/DevOpsChallenge.SalesApi &
+      env:  
+        CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
 
 #    - name: Sample test
 #      run: ls -al ./devops-package
@@ -38,10 +43,6 @@ jobs:
     needs:
       - build
     steps:
-    - name: run background
-      run: ./devops-package/DevOpsChallenge.SalesApi &
-      env:  
-        CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
 
     - name: Curl Test
       run: curl -v http://localhost:5000/api/sales
