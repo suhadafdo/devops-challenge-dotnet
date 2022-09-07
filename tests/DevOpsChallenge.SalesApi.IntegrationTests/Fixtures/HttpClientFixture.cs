@@ -8,7 +8,7 @@ namespace DevOpsChallenge.SalesApi.IntegrationTests.Fixtures
         public HttpClientFixture()
         {
             // Determine if specific configuration has been provided
-            string endpoint = Environment.GetEnvironmentVariable("SALES_API_ENDPOINT") ?? "http://localhost:5000";
+            string endpoint = Environment.GetEnvironmentVariable("SALES_API_ENDPOINT") ?? "http://localhost:51184";
 
             // Initialise a HTTP client
             this.HttpClient = new HttpClient();
