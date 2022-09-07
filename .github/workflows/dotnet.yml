@@ -42,3 +42,5 @@ jobs:
       
     - name: Test
       run: sleep 10 && dotnet test /home/runner/work/devops-challenge-dotnet/devops-challenge-dotnet/DevOpsChallenge.SalesApi.sln --verbosity normal
+      env:
+        SALES_API_ENDPOINT: http://localhost:5000/api/sales
