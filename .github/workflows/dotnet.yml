@@ -31,14 +31,13 @@ jobs:
       env:  
         CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
 
-    - name: Test
-      run: sleep 10 && dotnet test /home/runner/work/devops-challenge-dotnet/devops-challenge-dotnet/DevOpsChallenge.SalesApi.sln --verbosity normal
-      env:
-        SALES_API_ENDPOINT: http://localhost:5000/api/sales
-
-    - name: Sample test
-      run: ls -al ./devops-package
-      
+#    - name: Sample test
+#      run: ls -al ./devops-package
+  unit-tests:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
     - name: run background
       run: ./devops-package/DevOpsChallenge.SalesApi &
       env:  
@@ -47,4 +46,7 @@ jobs:
     - name: Curl Test
       run: curl -v http://localhost:5000/api/sales
       
-
+    - name: Test
+      run: sleep 10 && dotnet test /home/runner/work/devops-challenge-dotnet/devops-challenge-dotnet/DevOpsChallenge.SalesApi.sln --verbosity normal
+      env:
+        SALES_API_ENDPOINT: http://localhost:5000/api/sales
