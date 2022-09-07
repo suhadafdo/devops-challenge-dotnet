@@ -38,7 +38,7 @@ jobs:
         CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
 
     - name: Curl Test
-      run: curl -vvv http://localhost:5000/api/sales
+      run: curl -v http://localhost:5000/api/sales
       
     - name: Test
       run: sleep 10 && dotnet test --no-build --verbosity normal
