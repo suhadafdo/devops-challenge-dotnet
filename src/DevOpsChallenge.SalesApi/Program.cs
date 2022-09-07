@@ -7,7 +7,7 @@ using System;
 // Set console title
 Console.Title = "DevOps Challenge Sales API";
 
-public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
             .UseKestrel(options => options.AddServerHeader = false)
             .UseStartup<Startup>();
