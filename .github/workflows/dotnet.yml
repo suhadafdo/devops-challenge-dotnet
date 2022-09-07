@@ -42,21 +42,23 @@ jobs:
     - name: Curl Test
       run: curl -v http://localhost:5000/api/sales
       
-#    - name: Test
-#      run: sleep 10 && dotnet test /home/runner/work/devops-challenge-dotnet/devops-challenge-dotnet/DevOpsChallenge.SalesApi.sln --verbosity normal
-#      env:
-#        SALES_API_ENDPOINT: http://localhost:5000/api/sales
-#        CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
+    - name: Test
+      continue-on-error: true
+      run: sleep 10 && dotnet test /home/runner/work/devops-challenge-dotnet/devops-challenge-dotnet/DevOpsChallenge.SalesApi.sln --verbosity normal
+      env:
+        SALES_API_ENDPOINT: http://localhost:5000/api/sales
+        CONNECTIONSTRINGS__DATABASE: "Server=localhost;Database=DevOpsChallenge.SalesApi;User Id=sa;Password=YourStrong@Passw0rd;"
 
     - name: Docker Build
       run: docker build -t ghcr.io/suhadafdo/devopschallenge:${{ github.sha }} .
 
     - name: Scan Docker Image using Trivy
+      continue-on-error: true
       uses: aquasecurity/trivy-action@master
       with:
         scan-type: 'image'
         image-ref: ghcr.io/suhadafdo/devopschallenge:${{ github.sha }}
-        exit-code: 0
+        exit-code: 1
         format: 'sarif'
         output: 'trivy-image-results.sarif'
         severity: 'MEDIUM,HIGH,CRITICAL'
