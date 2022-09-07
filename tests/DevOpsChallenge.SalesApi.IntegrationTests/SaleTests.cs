@@ -37,7 +37,7 @@ namespace DevOpsChallenge.SalesApi.IntegrationTests
 
             // ACT
             // Create sales
-            /*
+            
             for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
             {
                 // Create data
@@ -56,7 +56,7 @@ namespace DevOpsChallenge.SalesApi.IntegrationTests
                 HttpResponseMessage createSaleHttpResponse = await client.PostAsJsonAsync("api/sales", payload).ConfigureAwait(false);
                 createSaleHttpResponse.EnsureSuccessStatusCode();
             }
-*/
+
             // Search for sales
             string endpoint = string.Format("api/sales?from={0}&to={1}", startDate.ToString("yyyy-MM-dd"), endDate.ToString("yyyy-MM-dd"));
             HttpResponseMessage querySalesHttpResponse = await client.GetAsync(endpoint).ConfigureAwait(false);
