@@ -1,4 +1,4 @@
-# DevOps Challenge (.NET)
+## DevOps Challenge (.NET)
 
 ## Introduction :wave:
 
